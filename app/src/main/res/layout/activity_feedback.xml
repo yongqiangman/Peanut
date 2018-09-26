@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable name="result" type="android.databinding.ObservableField&lt;String&gt;"/>
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+        <TextView android:id="@+id/tv_result"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerHorizontal="true"
+                  android:text="@{result}"/>
+        <EditText android:id="@+id/et_sum_count"
+                  android:layout_below="@+id/tv_result"
+                  android:layout_centerHorizontal="true"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="number"
+                  android:hint="@string/sum_count"/>
+        <EditText android:id="@+id/et_sum_person"
+                  android:layout_below="@+id/et_sum_count"
+                  android:layout_centerHorizontal="true"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="number"
+                  android:text="10"/>
+        <Button android:id="@+id/btn_compute"
+                android:layout_below="@+id/et_sum_person"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="@string/computer"/>
+    </RelativeLayout>
+</layout>

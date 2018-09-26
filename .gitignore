@@ -1,0 +1,16 @@
+build/
+app/build/
+CloudFile/build/
+Monitor/build/
+NetWork/build/
+.idea/
+
+*.iml
+
+# Gradle files
+.gradle/
+
+local.properties
+
+app/src/androidTest/
+app/src/test/

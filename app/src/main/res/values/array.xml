@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="className">
+        <item>com.yqman.evan.activity.BannerActivity</item>
+        <item>com.yqman.evan.activity.FeedBackActivity</item>
+        <item>com.yqman.evan.activity.ZiRoomActivity</item>
+        <item>com.yqman.evan.activity.DatabaseActivity</item>
+        <item>com.yqman.evan.activity.StorageActivity</item>
+    </string-array>
+</resources>

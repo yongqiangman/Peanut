@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data >
+        <import type="android.databinding.ObservableField"/>
+        <variable name="displayMsg" type="ObservableField&lt;String&gt;"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginLeft="30dp"
+                  android:layout_marginStart="30dp"
+                  android:layout_marginRight="30dp"
+                  android:layout_marginEnd="30dp"
+                  android:orientation="vertical">
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="30dp"
+                  android:inputType="number"
+                  android:hint="@string/input_price"
+                  android:id="@+id/editText"/>
+        <Button android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="@string/computer"
+                android:onClick="onClick"
+                android:id="@+id/button"/>
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@{displayMsg}"
+                  android:id="@+id/textView"/>
+    </LinearLayout>
+</layout>
