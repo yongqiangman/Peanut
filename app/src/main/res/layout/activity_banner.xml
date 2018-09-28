@@ -11,7 +11,6 @@
     <com.yqman.wdiget.HorizontalDotView
             android:layout_marginTop="130dp"
             android:id="@+id/dot_page"
-            app:yqman_widget_dotSize="50dp"
             app:yqman_widget_dotMargin="20dp"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"

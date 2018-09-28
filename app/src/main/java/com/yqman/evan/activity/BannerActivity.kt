@@ -20,16 +20,12 @@ class BannerActivity : BaseActivity(), HorizontalScrollPage.OnItemClickedListene
         setContentView(R.layout.activity_banner)
         val view : HorizontalScrollPage = findViewById(R.id.scroll_page)
         val dot : HorizontalDotView = findViewById(R.id.dot_page)
-        view.mItemClickListener = this
-        view.mItemSelectedListener = object : HorizontalScrollPage.OnItemSelectedListener {
-            override fun onItemSelect(prePos: Int, selected: Int, sum: Int) {
-                dot.updatePos(prePos, selected, sum)
-            }
+        view.setItemClickListener(this)
+        view.setItemSelectedListener { selected, sum ->
+            dot.updatePos(selected, sum)
         }
-        view.mImageLoader = object : HorizontalScrollPage.ImageLoader {
-            override fun updateImageView(imageView: ImageView, url: String) {
-                Picasso.get().load(url).into(imageView)
-            }
+        view.setImageLoader { imageView, url ->
+            Picasso.get().load(url).into(imageView)
         }
         val list = ArrayList<String>().apply {
             add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535099255&di=aa27e9eb2b7bce3a1a7b6e60d6c613b8&imgtype=jpg&er=1&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F763293ce06bf1e684ef0ea3da43ae5008d8564b8.jpg")

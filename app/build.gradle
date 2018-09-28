@@ -22,9 +22,15 @@ android {
     dataBinding { enabled = true }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation fileTree(dir: 'libs', include: ['*.aar'])
+    implementation(name:'widget-0.0.0', ext:'aar')
     implementation project(':CloudFile')
     implementation project(':Monitor')
     implementation 'com.android.support:appcompat-v7:27.1.1'
