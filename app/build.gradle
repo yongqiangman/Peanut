@@ -47,7 +47,6 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation(name:'widget-0.0.0', ext:'aar')
     implementation project(':CloudFile')
     implementation project(':Monitor')
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -77,6 +76,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'exifinterface'
     }
+    implementation 'com.yqman.widget:Widget:0.0.0'
 }
 
 // 读取签名配置
