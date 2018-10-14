@@ -17,6 +17,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.yqman.peanut.MainActivity;
 import com.yqman.evan.R;
 
 import android.support.test.espresso.ViewInteraction;

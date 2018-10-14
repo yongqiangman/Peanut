@@ -23,6 +23,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.yqman.peanut.MainActivity;
 import com.yqman.evan.R;
 
 import android.support.test.espresso.DataInteraction;
@@ -60,7 +61,7 @@ public class MainActivityTest {
         appCompatTextView.perform(click());
 
         ViewInteraction textView = onView(
-                allOf(withId(android.R.id.text1), withText("com.yqman.evan.activity.ZiRoomActivity"),
+                allOf(withId(android.R.id.text1), withText("com.yqman.evan.test.ZiRoomActivity"),
                         childAtPosition(
                                 allOf(withId(R.id.forward_activity_name),
                                         childAtPosition(
@@ -71,7 +72,7 @@ public class MainActivityTest {
         textView.check(matches(isDisplayed()));
 
         ViewInteraction textView2 = onView(
-                allOf(withId(android.R.id.text1), withText("com.yqman.evan.activity.ZiRoomActivity"),
+                allOf(withId(android.R.id.text1), withText("com.yqman.evan.test.ZiRoomActivity"),
                         childAtPosition(
                                 allOf(withId(R.id.forward_activity_name),
                                         childAtPosition(

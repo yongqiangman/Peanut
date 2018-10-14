@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="className">
-        <item>com.yqman.evan.activity.BannerActivity</item>
-        <item>com.yqman.evan.activity.FeedBackActivity</item>
-        <item>com.yqman.evan.activity.ZiRoomActivity</item>
-        <item>com.yqman.evan.activity.DatabaseActivity</item>
-        <item>com.yqman.evan.activity.StorageActivity</item>
+        <item>com.yqman.peanut.widget.BannerActivity</item>
+        <item>com.yqman.peanut.test.FeedBackActivity</item>
+        <item>com.yqman.peanut.test.ZiRoomActivity</item>
+        <item>com.yqman.peanut.storage.DatabaseActivity</item>
+        <item>com.yqman.peanut.storage.StorageActivity</item>
     </string-array>
 </resources>
