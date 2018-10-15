@@ -26,7 +26,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.yqman.widget:Widget:0.0.0'
+    api fileTree(dir: 'libs', include: ['*.aar'])
     api 'com.yqman.persistence:Persistence:0.0.0'
     api 'com.yqman.persistence:PersistenceAndroid:0.0.0'
     api 'com.yqman.scheduler:SchedulerAndroid:0.0.0'

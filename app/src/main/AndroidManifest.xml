@@ -13,21 +13,29 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name="com.yqman.peanut.MainActivity">
+            android:theme="@style/Evan.Theme">
+        <activity android:name="com.yqman.peanut.Navigation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.yqman.peanut.test.ZiRoomActivity"/>
-        <activity android:name="com.yqman.peanut.test.FeedBackActivity"/>
-        <activity android:name="com.yqman.peanut.storage.DatabaseActivity"/>
-        <activity android:name="com.yqman.peanut.storage.StorageActivity"/>
-        <activity android:name="com.yqman.peanut.widget.BannerActivity"/>
+        <activity android:name="com.yqman.peanut.MainActivity"
+                  android:exported="false"/>
+        <activity android:name="com.yqman.peanut.test.ZiRoomActivity"
+                  android:exported="false"/>
+        <activity android:name="com.yqman.peanut.test.FeedBackActivity"
+                  android:exported="false"/>
+        <activity android:name="com.yqman.peanut.storage.DatabaseActivity"
+                  android:exported="false"/>
+        <activity android:name="com.yqman.peanut.storage.StorageActivity"
+                  android:exported="false"/>
+        <activity android:name="com.yqman.peanut.widget.BannerActivity"
+                  android:exported="false"/>
         <activity android:name="com.yqman.peanut.android.PermissionActivity"
-                  android:theme="@style/Evan.Theme.NoTitleBar.Translucent"/>
+                  android:exported="false"
+                  android:theme="@style/Evan.Theme.Translucent"/>
         <provider
                 android:name="com.yqman.cloudfile.db.CloudFileProvider"
                 android:authorities="com.yqman.cloudfile"
