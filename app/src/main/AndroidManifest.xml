@@ -23,17 +23,7 @@
         </activity>
         <activity android:name="com.yqman.peanut.MainActivity"
                   android:exported="false"/>
-        <activity android:name="com.yqman.peanut.test.ZiRoomActivity"
-                  android:exported="false"/>
-        <activity android:name="com.yqman.peanut.test.FeedBackActivity"
-                  android:exported="false"/>
-        <activity android:name="com.yqman.peanut.storage.DatabaseActivity"
-                  android:exported="false"/>
-        <activity android:name="com.yqman.peanut.storage.StorageActivity"
-                  android:exported="false"/>
-        <activity android:name="com.yqman.peanut.widget.BannerActivity"
-                  android:exported="false"/>
-        <activity android:name="com.yqman.peanut.android.PermissionActivity"
+        <activity android:name="com.yqman.peanut.library.android.permission.PermissionActivity"
                   android:exported="false"
                   android:theme="@style/Evan.Theme.Translucent"/>
         <provider

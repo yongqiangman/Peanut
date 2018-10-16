@@ -1,4 +1,4 @@
-package com.yqman.peanut.android;
+package com.yqman.peanut.library.android;
 
 /**
  * Created by manyongqiang on 2018/6/13.

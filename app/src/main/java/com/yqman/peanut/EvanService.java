@@ -40,6 +40,9 @@ public class EvanService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent == null) {
+            return super.onStartCommand(null, flags, startId);
+        }
         String serviceType = intent.getStringExtra(BaseExtras.SERVICE_TYPE);
         if (TextUtils.isEmpty(serviceType)) {
             return super.onStartCommand(intent, flags, startId);

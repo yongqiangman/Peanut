@@ -3,8 +3,8 @@
     <data>
         <import type="com.yqman.peanut.library.FormatUtils"/>
         <import type="android.view.View"/>
-        <variable name="listener" type="com.yqman.peanut.storage.adapter.RemoteFileAdapter.OnItemClickListener"/>
-        <variable name="file" type="com.yqman.peanut.storage.presenter.DocumentPresenter.FileView"/>
+        <variable name="listener" type="com.yqman.peanut.test.storage.adapter.RemoteFileAdapter.OnItemClickListener"/>
+        <variable name="file" type="com.yqman.peanut.test.storage.presenter.DocumentPresenter.FileView"/>
     </data>
     <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"

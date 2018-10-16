@@ -1,24 +1,44 @@
-package com.yqman.peanut.widget
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.yqman.peanut.test
 
 import android.os.Bundle
 import android.os.Handler
+import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.squareup.picasso.Picasso
-import com.yqman.peanut.BaseActivity
 import com.yqman.monitor.LogHelper
 import com.yqman.peanut.R
 import com.yqman.wdiget.HorizontalDotView
 import com.yqman.wdiget.HorizontalScrollPage
 import com.yqman.wdiget.ToastHelper
 
-class BannerActivity : BaseActivity(), HorizontalScrollPage.OnItemClickedListener {
+class BannerFragment: Fragment(), HorizontalScrollPage.OnItemClickedListener {
     companion object {
-        const val TAG = "BannerActivity"
+        const val TAG = "Banner"
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_banner)
-        val view : HorizontalScrollPage = findViewById(R.id.scroll_page)
-        val dot : HorizontalDotView = findViewById(R.id.dot_page)
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return LayoutInflater.from(container?.context).inflate(R.layout.fragment_banner, container, false)
+    }
+
+    override fun onViewCreated(root: View, savedInstanceState: Bundle?) {
+        val view : HorizontalScrollPage = root.findViewById(R.id.scroll_page)
+        val dot : HorizontalDotView = root.findViewById(R.id.dot_page)
         view.setItemClickListener(this)
         view.setItemSelectedListener { selected, sum ->
             dot.updatePos(selected, sum)
@@ -41,6 +61,6 @@ class BannerActivity : BaseActivity(), HorizontalScrollPage.OnItemClickedListene
 
     override fun onClickItem(pos: Int) {
         LogHelper.d(TAG, "pos $pos")
-        ToastHelper.showToast(this, "index$pos")
+        ToastHelper.showToast(context, "index$pos")
     }
 }

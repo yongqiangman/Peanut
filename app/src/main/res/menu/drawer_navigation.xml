@@ -16,14 +16,26 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/drawer_menu_ziRoom"
+                android:id="@+id/drawer_menu_home"
                 android:icon="@drawable/selector_home_img"
-                android:title="@string/ziRoom" />
+                android:title="@string/home" />
     </group>
 
     <item android:title="@string/test">
         <menu>
             <group android:checkableBehavior="single">
+                <item
+                        android:id="@+id/drawer_menu_test_ziRoom"
+                        android:icon="@drawable/selector_home_img"
+                        android:title="@string/test_ziRoom" />
+                <item
+                        android:id="@+id/drawer_menu_test_storage"
+                        android:icon="@drawable/selector_storage_img"
+                        android:title="@string/test_storage" />
+                <item
+                        android:id="@+id/drawer_menu_test_database"
+                        android:icon="@drawable/selector_database_img"
+                        android:title="@string/test_database" />
                 <item
                         android:id="@+id/drawer_menu_test_clock"
                         android:icon="@drawable/selector_clock_img"

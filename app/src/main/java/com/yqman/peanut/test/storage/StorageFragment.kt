@@ -1,4 +1,18 @@
-package com.yqman.peanut.storage
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.yqman.peanut.test.storage
 
 import android.annotation.TargetApi
 import android.app.Activity
@@ -7,43 +21,48 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Environment
 import android.os.storage.StorageManager
 import android.provider.DocumentsContract
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.KeyEvent
-import com.yqman.peanut.BaseActivity
-import com.yqman.peanut.storage.adapter.RemoteFileAdapter
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.yqman.monitor.LogHelper
 import com.yqman.peanut.R
-import com.yqman.peanut.databinding.ActivityStorageBinding
-import com.yqman.peanut.storage.presenter.DocumentPresenter
+import com.yqman.peanut.databinding.FragmentStorageBinding
+import com.yqman.peanut.test.storage.adapter.RemoteFileAdapter
+import com.yqman.peanut.test.storage.presenter.DocumentPresenter
 
-/**
- * Created by manyongqiang on 2018/7/13.
- *
- */
 @TargetApi(Build.VERSION_CODES.N)
-class StorageActivity : BaseActivity(), DocumentPresenter.IView, RemoteFileAdapter.OnItemClickListener {
-
+class StorageFragment: Fragment(),  DocumentPresenter.IView, RemoteFileAdapter.OnItemClickListener {
     companion object {
         const val TAG = "StorageActivity"
     }
 
     private val mAdapter = RemoteFileAdapter()
-    private val mDocumentPresenter = DocumentPresenter(this, this)
+    private lateinit var mDocumentPresenter: DocumentPresenter
 
-    override fun initView() {
-        val binding = DataBindingUtil.setContentView<ActivityStorageBinding>(this, R.layout.activity_storage)
-        binding.rvList.layoutManager = LinearLayoutManager(this)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val binding = DataBindingUtil.inflate<FragmentStorageBinding>(inflater, R.layout.fragment_storage, container, false)
+        binding.rvList.layoutManager = LinearLayoutManager(context)
         mAdapter.setOnItemCLickListener(this)
         binding.rvList.adapter = mAdapter
+        return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        mDocumentPresenter = DocumentPresenter(activity!!, this)
         // accessDocument()
         accessStorageVolume()
     }
 
     private fun accessStorageVolume() {
-        val storageManager: StorageManager? = getSystemService(Context.STORAGE_SERVICE) as StorageManager
+        val storageManager: StorageManager? = context?.getSystemService(Context.STORAGE_SERVICE) as StorageManager
         storageManager?.let {
             val storageVolumes = storageManager.storageVolumes
             LogHelper.d(TAG, "volumes size ${storageVolumes.size}")
@@ -68,7 +87,6 @@ class StorageActivity : BaseActivity(), DocumentPresenter.IView, RemoteFileAdapt
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode != Activity.RESULT_OK) {
-            finish()
             return
         }
         when (requestCode) {
@@ -104,7 +122,7 @@ class StorageActivity : BaseActivity(), DocumentPresenter.IView, RemoteFileAdapt
     }
 
     private fun handleSelectDocumentResult(uri: Uri) {
-        contentResolver.takePersistableUriPermission(uri,
+        context?.contentResolver?.takePersistableUriPermission(uri,
                 Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
         mDocumentPresenter.updateUri(uri)
     }
@@ -126,20 +144,16 @@ class StorageActivity : BaseActivity(), DocumentPresenter.IView, RemoteFileAdapt
         dirs?.apply { mAdapter.updateData(dirs) }
     }
 
-    override fun updateTitleBar(title: String?) {
-        setTitle(title ?: TAG)
-    }
-
     override fun onItemClick(cloudFile: DocumentPresenter.FileView) {
         if (cloudFile.isDir) {
             mDocumentPresenter.enterDir(cloudFile)
         }
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+    fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK && mDocumentPresenter.backDir()) {
             return true
         }
-        return super.onKeyDown(keyCode, event)
+        return false
     }
 }

@@ -1,4 +1,18 @@
-package com.yqman.peanut.storage
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.yqman.peanut.test.storage
 
 import android.content.Intent
 import android.database.Cursor
@@ -6,25 +20,22 @@ import android.databinding.DataBindingUtil
 import android.databinding.ObservableField
 import android.os.Bundle
 import android.os.Handler
+import android.support.v4.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.yqman.android.scheduler.receiver.BaseResultReceiver
 import com.yqman.android.scheduler.receiver.ErrorType
-import com.yqman.peanut.BaseActivity
-import com.yqman.peanut.BaseExtras
-import com.yqman.peanut.EvanApplication
 import com.yqman.cloudfile.db.CloudFileDatabaseHelper
 import com.yqman.cloudfile.db.Tables
 import com.yqman.cloudfile.io.model.CloudFile
+import com.yqman.peanut.BaseExtras
+import com.yqman.peanut.EvanApplication
 import com.yqman.peanut.R
-import com.yqman.peanut.databinding.ActivityDatabaseBinding
+import com.yqman.peanut.databinding.FragmentDatabaseBinding
 import java.util.*
 
-/**
- * Created by manyongqiang on 2018/7/13.
- *
- */
-
-class DatabaseActivity : BaseActivity(), View.OnClickListener {
+class DatabaseFragment: Fragment(), View.OnClickListener {
     private companion object {
         const val TAG = "DatabaseActivity"
     }
@@ -32,17 +43,19 @@ class DatabaseActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mRandom: Random
     private var mCurrentFsid: Long = 0
     private val mDisplayMsg = ObservableField<String>()
-    private lateinit var mBinding: ActivityDatabaseBinding
+    private lateinit var mBinding: FragmentDatabaseBinding
 
-    override fun initDataBeforeView() {
-        mHelper = CloudFileDatabaseHelper(contentResolver)
-        mRandom = Random()
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_database, container, false)
+        mBinding.displayMsg = mDisplayMsg
+        mBinding.listener = this
+        return mBinding.root
     }
 
-    override fun initView() {
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_database)
-        mBinding.displayMsg = mDisplayMsg
-        title = "Database"
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        mHelper = CloudFileDatabaseHelper(context!!.contentResolver)
+        mRandom = Random()
     }
 
     override fun onClick(view: View?) {
@@ -60,7 +73,7 @@ class DatabaseActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun queryDb() {
-        val cursor = contentResolver.query(mHelper.queryUri, Tables.CacheFileColumn.Query.PROJECTION,
+        val cursor = context?.contentResolver?.query(mHelper.queryUri, Tables.CacheFileColumn.Query.PROJECTION,
                 null, null, null)
         printCursor(cursor)
         cursor?.let { cursor.close() }
@@ -68,7 +81,7 @@ class DatabaseActivity : BaseActivity(), View.OnClickListener {
 
     private fun queryDb(fsid: String) {
         val where = Tables.CacheFileColumn.FSID + "=?"
-        val cursor = contentResolver.query(mHelper.queryUri, Tables.CacheFileColumn.Query.PROJECTION,
+        val cursor = context?.contentResolver?.query(mHelper.queryUri, Tables.CacheFileColumn.Query.PROJECTION,
                 where, arrayOf(fsid), null)
         if (cursor == null || cursor.count <= 0) {
             mDisplayMsg.set("nothing")
@@ -90,11 +103,11 @@ class DatabaseActivity : BaseActivity(), View.OnClickListener {
     private fun deleteDb() {
         val cloudFile = CloudFile()
         cloudFile.path = "/"
-        val intent = Intent(this, EvanApplication.service)
+        val intent = Intent(context, EvanApplication.service)
         intent.putExtra(BaseExtras.CLOUD_FILE, cloudFile)
         intent.putExtra(BaseExtras.SERVICE_TYPE, "CLOUD_FILE_SERVICE")
         intent.putExtra(BaseExtras.RESULT_RECEIVER, ResultReceiver(this))
-        startService(intent)
+        context?.startService(intent)
         val selection = Tables.CacheFileColumn.FSID + "=?"
         val selectionArgs = arrayOf("" + mCurrentFsid)
         val row = mHelper.deleteRow(selection, selectionArgs)
@@ -125,15 +138,15 @@ class DatabaseActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    class ResultReceiver(reference: DatabaseActivity) :
-            BaseResultReceiver<DatabaseActivity>(reference, Handler(), null) {
+    class ResultReceiver(reference: DatabaseFragment) :
+            BaseResultReceiver<DatabaseFragment>(reference, Handler(), null) {
 
-        override fun onSuccess(reference: DatabaseActivity, resultData: Bundle?) {
+        override fun onSuccess(reference: DatabaseFragment, resultData: Bundle?) {
             super.onSuccess(reference, resultData)
             com.yqman.monitor.LogHelper.d(TAG, "success")
         }
 
-        override fun onFailed(reference: DatabaseActivity, errType: ErrorType, errno: Int, resultData: Bundle): Boolean {
+        override fun onFailed(reference: DatabaseFragment, errType: ErrorType, errno: Int, resultData: Bundle): Boolean {
             com.yqman.monitor.LogHelper.d(TAG, "failed")
             return super.onFailed(reference, errType, errno, resultData)
         }

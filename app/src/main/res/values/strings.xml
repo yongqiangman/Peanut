@@ -13,11 +13,14 @@
     <string name="forward">跳转</string>
     <string name="sum_count">总数</string>
     <string name="welcome">欢迎</string>
-    <string name="ziRoom">自如房租</string>
+    <string name="home">主页</string>
     <string name="social">社交</string>
     <string name="social_share_app">分享应用</string>
     <string name="social_contact_us">联系我</string>
     <string name="test">test</string>
+    <string name="test_ziRoom">自如房租</string>
+    <string name="test_storage">存储</string>
+    <string name="test_database">数据库</string>
     <string name="test_draw">画板</string>
     <string name="test_clock">时钟</string>
     <string name="test_webView">浏览器</string>

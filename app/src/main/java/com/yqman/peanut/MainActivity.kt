@@ -3,9 +3,14 @@ package com.yqman.peanut
 import android.content.Intent
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
+import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView
 import com.yqman.monitor.LogHelper
+import com.yqman.peanut.test.BannerFragment
+import com.yqman.peanut.test.ZiRoomFragment
+import com.yqman.peanut.test.storage.DatabaseFragment
+import com.yqman.peanut.test.storage.StorageFragment
 import com.yqman.wdiget.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.title_bar_normal.*
@@ -61,18 +66,45 @@ class MainActivity : BaseActivity() {
     }
 
     private fun handleItemClicked(itemId: Int) {
+        val tag = "$itemId"
         when(itemId) {
-            R.id.drawer_menu_ziRoom -> {
-
+            R.id.drawer_menu_home -> {
+                val fragment = supportFragmentManager.findFragmentByTag(tag)
+                if (fragment != null) {
+                    switchFragment(fragment, tag)
+                } else {
+                    switchFragment(BannerFragment(), tag)
+                }
+            }
+            R.id.drawer_menu_test_ziRoom -> {
+                val fragment = supportFragmentManager.findFragmentByTag(tag)
+                if (fragment != null) {
+                    switchFragment(fragment, tag)
+                } else {
+                    switchFragment(ZiRoomFragment(), tag)
+                }
+            }
+            R.id.drawer_menu_test_storage -> {
+                val fragment = supportFragmentManager.findFragmentByTag(tag)
+                if (fragment != null) {
+                    switchFragment(fragment, tag)
+                } else {
+                    switchFragment(StorageFragment(), tag)
+                }
+            }
+            R.id.drawer_menu_test_database -> {
+                val fragment = supportFragmentManager.findFragmentByTag(tag)
+                if (fragment != null) {
+                    switchFragment(fragment, tag)
+                } else {
+                    switchFragment(DatabaseFragment(), tag)
+                }
             }
             R.id.drawer_menu_test_clock -> {
-
             }
             R.id.drawer_menu_test_draw -> {
-
             }
             R.id.drawer_menu_test_webView -> {
-
             }
             R.id.drawer_menu_share -> {
                 shareApp()
@@ -113,7 +145,7 @@ class MainActivity : BaseActivity() {
         startActivity(Intent.createChooser(shareIntent, "Contact"))
     }
 
-    private fun switchFragment(targetFragment: Fragment) {
+    private fun switchFragment(targetFragment: Fragment, tag: String) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         mCurrentFragment?.apply {
             fragmentTransaction.hide(this)
@@ -121,8 +153,20 @@ class MainActivity : BaseActivity() {
         if (targetFragment.isAdded) {
             fragmentTransaction.show(targetFragment).commit()
         } else {
-            fragmentTransaction.add(R.id.drawer_container, targetFragment).commit()
+            fragmentTransaction.add(R.id.drawer_container, targetFragment, tag).commit()
         }
         mCurrentFragment = targetFragment
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        val fragment = mCurrentFragment
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (fragment is StorageFragment) {
+                if (fragment.onKeyDown(keyCode, event)) {
+                    return true
+                }
+            }
+        }
+        return super.onKeyDown(keyCode, event)
     }
 }
