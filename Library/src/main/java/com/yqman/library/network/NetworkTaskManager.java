@@ -1,5 +1,6 @@
 package com.yqman.library.network;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -28,13 +29,14 @@ public class NetworkTaskManager {
     private IImageTask mImageTask;
     private static NetworkTaskManager mInstance;
 
-    public static NetworkTaskManager getInstance(Context context, String dirPath) {
+    public static NetworkTaskManager getInstance(Context context) {
         if (mInstance == null) {
             synchronized(NetworkTaskManager.class) {
                 if (mInstance == null) {
                     mInstance = new NetworkTaskManager();
                     try {
-                        final AndroidOkHttpInstance instance = new AndroidOkHttpInstance(context, dirPath);
+                        final AndroidOkHttpInstance instance = new AndroidOkHttpInstance(context,
+                                context.getCacheDir().getAbsolutePath());
                         mInstance.mNetworkTask = instance;
                         mInstance.mImageTask = instance;
                     } catch (IllegalArgumentException e) {
@@ -78,6 +80,24 @@ public class NetworkTaskManager {
         } else {
             Log.e(TAG, "can not access network on ui thread");
             return null;
+        }
+    }
+
+    public boolean uploadFile(String url, HashMap<String, String> params, HashMap<String, String> headerMap, File file) {
+        if (isNonUIThread()) {
+            return mNetworkTask.uploadFile(url, params, addCommonParams(headerMap), file);
+        } else {
+            Log.e(TAG, "can not access network on ui thread");
+            return false;
+        }
+    }
+
+    public boolean downloadFile(String url, HashMap<String, String> params, HashMap<String, String> headerMap, File file) {
+        if (isNonUIThread()) {
+            return mNetworkTask.downloadFile(url, params, addCommonParams(headerMap), file);
+        } else {
+            Log.e(TAG, "can not access network on ui thread");
+            return false;
         }
     }
 

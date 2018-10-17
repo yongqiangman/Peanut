@@ -19,6 +19,6 @@ public class CloudFileApi {
         params.put("dir", path);
         params.put("start", String.valueOf(0));
         params.put("limit", String.valueOf(200));
-        return NetworkTaskManager.getInstance(context, context.getCacheDir().getAbsolutePath()).sendGetRequest(url, params);
+        return NetworkTaskManager.getInstance(context).sendGetRequest(url, params);
     }
 }
