@@ -7,9 +7,9 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView
 import com.yqman.monitor.LogHelper
-import com.yqman.peanut.test.BannerFragment
-import com.yqman.peanut.test.ZiRoomFragment
-import com.yqman.peanut.test.storage.DatabaseFragment
+import com.yqman.peanut.picture.PictureFragment
+import com.yqman.peanut.test.*
+import com.yqman.peanut.cloudfile.DatabaseFragment
 import com.yqman.peanut.test.storage.StorageFragment
 import com.yqman.wdiget.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,10 +35,10 @@ class MainActivity : BaseActivity() {
         // enable write permission
         // PermissionPresenter.checkWritePermission(this)
         initNavigation()
-        title_bar_tv.text = resources.getString(R.string.app_name)
-        title_bar_left_img.visibility = View.VISIBLE
-        title_bar_left_img.setImageResource(R.drawable.icon_navigation_menu)
-        title_bar_left_img.setOnClickListener {
+        title_bar_normal_tv.text = resources.getString(R.string.app_name)
+        title_bar_normal_left_img.visibility = View.VISIBLE
+        title_bar_normal_left_img.setImageResource(R.drawable.icon_navigation_menu)
+        title_bar_normal_left_img.setOnClickListener {
             drawer_layout.openDrawer(GravityCompat.START)
         }
     }
@@ -46,7 +46,7 @@ class MainActivity : BaseActivity() {
     private fun initNavigation() {
         drawer_navigation.setNavigationItemSelectedListener {
             it.isChecked = true
-            title_bar_tv.text = it.title
+            title_bar_normal_tv.text = it.title
             handleItemClicked(it.itemId)
             drawer_layout.closeDrawers()
             return@setNavigationItemSelectedListener true
@@ -67,13 +67,14 @@ class MainActivity : BaseActivity() {
 
     private fun handleItemClicked(itemId: Int) {
         val tag = "$itemId"
+        title_bar_normal.visibility = View.VISIBLE
         when(itemId) {
             R.id.drawer_menu_home -> {
                 val fragment = supportFragmentManager.findFragmentByTag(tag)
                 if (fragment != null) {
                     switchFragment(fragment, tag)
                 } else {
-                    switchFragment(BannerFragment(), tag)
+                    switchFragment(PictureFragment(), tag)
                 }
             }
             R.id.drawer_menu_test_ziRoom -> {
@@ -101,10 +102,30 @@ class MainActivity : BaseActivity() {
                 }
             }
             R.id.drawer_menu_test_clock -> {
+                val fragment = supportFragmentManager.findFragmentByTag(tag)
+                if (fragment != null) {
+                    switchFragment(fragment, tag)
+                } else {
+                    switchFragment(ClockFragment(), tag)
+                }
             }
             R.id.drawer_menu_test_draw -> {
+                title_bar_normal.visibility = View.GONE
+                val fragment = supportFragmentManager.findFragmentByTag(tag)
+                if (fragment != null) {
+                    switchFragment(fragment, tag)
+                } else {
+                    switchFragment(DrawFragment(), tag)
+                }
             }
             R.id.drawer_menu_test_webView -> {
+                title_bar_normal.visibility = View.GONE
+                val fragment = supportFragmentManager.findFragmentByTag(tag)
+                if (fragment != null) {
+                    switchFragment(fragment, tag)
+                } else {
+                    switchFragment(WebViewFragment(), tag)
+                }
             }
             R.id.drawer_menu_share -> {
                 shareApp()
@@ -162,11 +183,16 @@ class MainActivity : BaseActivity() {
         val fragment = mCurrentFragment
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (fragment is StorageFragment) {
-                if (fragment.onKeyDown(keyCode, event)) {
+                if (fragment.onKeyBack()) {
+                    return true
+                }
+            } else if (fragment is WebViewFragment) {
+                if (fragment.onKeyBack()) {
                     return true
                 }
             }
         }
+
         return super.onKeyDown(keyCode, event)
     }
 }

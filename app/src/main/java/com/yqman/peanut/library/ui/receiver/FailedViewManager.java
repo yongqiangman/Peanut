@@ -72,7 +72,6 @@ public class FailedViewManager implements IFailedManager {
         Activity activity = getActivity();
         CustomDialog.Builder builder = failedViewBean.builder;
         if (builder != null && activity != null) {
-            builder.setActivity(activity);
             builder.setContentText(contentMsg);
             builder.show();
         } else {

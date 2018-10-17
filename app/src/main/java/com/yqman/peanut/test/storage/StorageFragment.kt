@@ -150,8 +150,8 @@ class StorageFragment: Fragment(),  DocumentPresenter.IView, RemoteFileAdapter.O
         }
     }
 
-    fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK && mDocumentPresenter.backDir()) {
+    fun onKeyBack(): Boolean {
+        if (mDocumentPresenter.backDir()) {
             return true
         }
         return false
