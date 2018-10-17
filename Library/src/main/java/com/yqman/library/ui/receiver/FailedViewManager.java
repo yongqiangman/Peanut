@@ -1,4 +1,4 @@
-package com.yqman.peanut.library.ui.receiver;
+package com.yqman.library.ui.receiver;
 
 import java.lang.ref.WeakReference;
 

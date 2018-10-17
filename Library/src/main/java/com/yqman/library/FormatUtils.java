@@ -1,4 +1,4 @@
-package com.yqman.peanut.library;
+package com.yqman.library;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

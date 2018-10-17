@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.yqman.peanut.library.android.permission;
+package com.yqman.library.android.permission;
 
 import android.Manifest;
 import android.annotation.TargetApi;

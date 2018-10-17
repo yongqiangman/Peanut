@@ -1,4 +1,4 @@
-package com.yqman.peanut.library.android;
+package com.yqman.library.android;
 
 import android.app.Application;
 import android.content.pm.PackageInfo;

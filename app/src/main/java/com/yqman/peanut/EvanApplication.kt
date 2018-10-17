@@ -5,7 +5,7 @@ import android.app.Application
 import android.app.Service
 import android.content.Intent
 import com.squareup.leakcanary.LeakCanary
-import com.yqman.peanut.library.LocalUncaughtExceptionHandler
+import com.yqman.library.LocalUncaughtExceptionHandler
 
 /**
  * Created by manyongqiang on 2018/2/5.

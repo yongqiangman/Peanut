@@ -22,9 +22,6 @@
         </activity>
         <activity android:name="com.yqman.peanut.MainActivity"
                   android:exported="false"/>
-        <activity android:name="com.yqman.peanut.library.android.permission.PermissionActivity"
-                  android:exported="false"
-                  android:theme="@style/Evan.Theme.Translucent"/>
         <provider
                 android:name="com.yqman.cloudfile.db.CloudFileProvider"
                 android:authorities="com.yqman.cloudfile"
