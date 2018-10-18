@@ -18,6 +18,7 @@ import com.yqman.wdiget.recyclerView.BaseRecyclerViewAdapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.ViewGroup;
 
@@ -27,12 +28,14 @@ import android.view.ViewGroup;
  * @param <M>
  */
 public abstract class StaggerAdapter<M> extends BaseRecyclerViewAdapter<M> {
+    private static final String TAG = "StaggerAdapter";
     private SparseIntArray mHistoryHeight = new SparseIntArray();
 
     @Override
     protected void onBindChildrenViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         int lastHeight = mHistoryHeight.get(i, 0);
-        if (lastHeight != 0) {
+        Log.d(TAG, "set pos:" + i + " Height:" + lastHeight);
+        if (lastHeight > 0) {
             ViewGroup.LayoutParams params = viewHolder.itemView.getLayoutParams();
             params.height = lastHeight;
             viewHolder.itemView.setLayoutParams(params);
@@ -41,10 +44,10 @@ public abstract class StaggerAdapter<M> extends BaseRecyclerViewAdapter<M> {
 
     @Override
     protected void onChildrenViewDetachedFromWindow(RecyclerView.ViewHolder holder, int position) {
-        int index = holder.getAdapterPosition();
         int height = holder.itemView.getMeasuredHeight();
-        if (height != 0) { //540是测量得到的加载中图片的高度
-            mHistoryHeight.put(index, height);
+        Log.d(TAG, "get pos:" + position + " Height:" + height);
+        if (height > 0) { //540是测量得到的加载中图片的高度
+            mHistoryHeight.put(position, height);
         }
         super.onChildrenViewDetachedFromWindow(holder, position);
     }

@@ -22,6 +22,8 @@
         </activity>
         <activity android:name="com.yqman.peanut.MainActivity"
                   android:exported="false"/>
+        <activity android:name="com.yqman.peanut.util.ImagePreviewActivity"
+                  android:exported="false"/>
         <provider
                 android:name="com.yqman.cloudfile.db.CloudFileProvider"
                 android:authorities="com.yqman.cloudfile"

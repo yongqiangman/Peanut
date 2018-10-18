@@ -7,7 +7,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.TextView
 import com.yqman.monitor.LogHelper
-import com.yqman.peanut.picture.PictureFragment
+import com.yqman.peanut.home.HomeFragment
 import com.yqman.peanut.test.*
 import com.yqman.peanut.cloudfile.DatabaseFragment
 import com.yqman.peanut.test.storage.StorageFragment
@@ -41,6 +41,7 @@ class MainActivity : BaseActivity() {
         title_bar_normal_left_img.setOnClickListener {
             drawer_layout.openDrawer(GravityCompat.START)
         }
+        switchFragment(HomeFragment(), "${R.id.drawer_menu_home}")
     }
 
     private fun initNavigation() {
@@ -74,7 +75,7 @@ class MainActivity : BaseActivity() {
                 if (fragment != null) {
                     switchFragment(fragment, tag)
                 } else {
-                    switchFragment(PictureFragment(), tag)
+                    switchFragment(HomeFragment(), tag)
                 }
             }
             R.id.drawer_menu_test_ziRoom -> {
@@ -192,7 +193,6 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
-
         return super.onKeyDown(keyCode, event)
     }
 }

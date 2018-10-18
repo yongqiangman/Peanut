@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+                 android:id="@+id/banner"
+                 android:layout_width="match_parent"
+                 android:layout_height="150dp">
+        <com.yqman.wdiget.HorizontalScrollPage
+                android:id="@+id/scroll_page"
+                app:yqman_widget_rollingFrequencySecond="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+        </com.yqman.wdiget.HorizontalScrollPage>
+        <com.yqman.wdiget.HorizontalDotView
+                android:id="@+id/dot_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:yqman_widget_dotMargin="20dp"
+                android:layout_marginBottom="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true">
+        </com.yqman.wdiget.HorizontalDotView>
+    </RelativeLayout>
+    <com.yqman.wdiget.recyclerView.AdvanceRecycleView
+            android:id="@+id/recycler_view"
+            android:layout_below="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+</RelativeLayout>
