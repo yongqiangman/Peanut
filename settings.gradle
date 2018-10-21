@@ -1,1 +1,1 @@
-include ':app', ':CloudFile', ':NetWork', ':Monitor', ':Library'
+include ':app', ':CloudFile', ':NetWork', ':Monitor', ':Library', ':KernelLibrary'
