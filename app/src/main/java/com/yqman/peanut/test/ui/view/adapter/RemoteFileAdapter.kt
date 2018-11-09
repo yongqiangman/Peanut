@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.yqman.peanut.test.storage.adapter
+package com.yqman.peanut.test.ui.view.adapter
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
@@ -20,10 +20,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.yqman.peanut.R
 import com.yqman.peanut.databinding.ItemFileListBinding
-import com.yqman.peanut.test.storage.presenter.DocumentPresenter
+import com.yqman.peanut.test.ui.viewmodel.DocumentViewModel
 
 class RemoteFileAdapter : RecyclerView.Adapter<BindViewHolder>() {
-    private var mRemoteFiles: List<DocumentPresenter.FileView>? = null
+    private var mRemoteFiles: List<DocumentViewModel.FileView>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindViewHolder {
         val mBinding = DataBindingUtil.inflate<ItemFileListBinding>(LayoutInflater.from(parent.context),
@@ -36,7 +36,7 @@ class RemoteFileAdapter : RecyclerView.Adapter<BindViewHolder>() {
         return mRemoteFiles?.size?:0
     }
 
-    fun updateData(files: List<DocumentPresenter.FileView>) {
+    fun updateData(files: List<DocumentViewModel.FileView>) {
         mRemoteFiles = files
         if (mRemoteFiles != null) {
             notifyDataSetChanged()
@@ -50,7 +50,7 @@ class RemoteFileAdapter : RecyclerView.Adapter<BindViewHolder>() {
     }
 
     interface OnItemClickListener {
-        fun onItemClick(cloudFile: DocumentPresenter.FileView)
+        fun onItemClick(cloudFile: DocumentViewModel.FileView)
     }
 
     override fun onBindViewHolder(holder: BindViewHolder, position: Int) {
@@ -58,7 +58,7 @@ class RemoteFileAdapter : RecyclerView.Adapter<BindViewHolder>() {
         holder.item.executePendingBindings()
     }
 
-    private fun getRemoteFile(position: Int): DocumentPresenter.FileView {
+    private fun getRemoteFile(position: Int): DocumentViewModel.FileView {
         return mRemoteFiles!![position]
     }
 }

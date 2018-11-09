@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.yqman.peanut.home
+package com.yqman.peanut.home.ui.view
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
@@ -24,6 +24,7 @@ import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import com.yqman.monitor.LogHelper
 import com.yqman.peanut.R
+import com.yqman.peanut.home.ui.viewmodel.HomeViewModel
 import com.yqman.peanut.util.ImagePreviewActivity
 import com.yqman.peanut.util.getActivityViewModel
 import com.yqman.wdiget.HorizontalDotView

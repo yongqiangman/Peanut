@@ -19,7 +19,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import com.squareup.picasso.Picasso
-import com.yqman.peanut.BaseActivity
+import com.yqman.kenel.library.BaseActivity
 import com.yqman.peanut.R
 import kotlinx.android.synthetic.main.activity_image_preview.*
 

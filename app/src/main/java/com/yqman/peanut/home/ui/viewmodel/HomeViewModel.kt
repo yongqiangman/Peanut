@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package com.yqman.peanut.home
+package com.yqman.peanut.home.ui.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
-import com.yqman.peanut.home.repository.HomeRepository
+import com.yqman.peanut.home.ui.repository.HomeRepository
 
 class HomeViewModel(application: Application): AndroidViewModel(application) {
 

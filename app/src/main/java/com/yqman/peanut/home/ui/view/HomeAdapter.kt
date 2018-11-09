@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.yqman.peanut.home
+package com.yqman.peanut.home.ui.view
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.yqman.peanut.test
+package com.yqman.peanut.test.ui.view
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -21,9 +21,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.yqman.peanut.R
 
-
-class DrawFragment: Fragment() {
+class ClockFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return LayoutInflater.from(container?.context).inflate(R.layout.fragment_draw, container, false)
+        return LayoutInflater.from(container?.context).inflate(R.layout.fragment_clock, container, false)
     }
 }

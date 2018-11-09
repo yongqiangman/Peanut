@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.yqman.peanut.home.repository
+package com.yqman.peanut.home.ui.repository
 
 import android.content.Context
 import android.util.Log

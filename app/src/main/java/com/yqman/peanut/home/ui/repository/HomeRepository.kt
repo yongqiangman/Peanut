@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package com.yqman.peanut.home.repository
+package com.yqman.peanut.home.ui.repository
 
 import android.app.Application
 import android.arch.lifecycle.LiveData

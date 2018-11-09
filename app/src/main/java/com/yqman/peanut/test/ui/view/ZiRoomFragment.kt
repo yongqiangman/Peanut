@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.yqman.peanut.test
+package com.yqman.peanut.test.ui.view
 
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableField

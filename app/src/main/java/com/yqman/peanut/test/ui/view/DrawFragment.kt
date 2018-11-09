@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.yqman.peanut.test
+package com.yqman.peanut.test.ui.view
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -20,23 +20,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yqman.peanut.R
-import kotlinx.android.synthetic.main.fragment_web_view.*
 
-class WebViewFragment: Fragment() {
+
+class DrawFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return LayoutInflater.from(container?.context).inflate(R.layout.fragment_web_view, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        webView.loadUrl("https://www.baidu.com/")
-    }
-
-    fun onKeyBack(): Boolean {
-        if (webView.canGoBack()) {
-            webView.goBack()
-            return true
-        }
-        return false
+        return LayoutInflater.from(container?.context).inflate(R.layout.fragment_draw, container, false)
     }
 }
