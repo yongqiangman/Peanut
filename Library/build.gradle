@@ -28,8 +28,8 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api fileTree(dir: 'libs', include: ['*.aar'])
     api 'com.yqman.persistence:PersistenceAndroid:0.0.0'
-    api 'com.yqman.scheduler:SchedulerAndroid:0.0.0'
-    api 'com.yqman.scheduler:Scheduler:0.0.0'
+    api 'com.baidu.netdisk.library:thread-scheduler:1.0.0.0'
+    api 'com.baidu.netdisk.library:thread-scheduler-android:1.0.0.0'
     //爬虫工具
     api 'org.jsoup:jsoup:1.9.2'
     api project(':NetWork')
