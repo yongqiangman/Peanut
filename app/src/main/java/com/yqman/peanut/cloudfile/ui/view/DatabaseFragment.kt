@@ -24,8 +24,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.yqman.android.scheduler.receiver.BaseResultReceiver
-import com.yqman.android.scheduler.receiver.ErrorType
+import com.netdisk.library.threadscheduler.android.BaseResultReceiver
+import com.netdisk.library.threadscheduler.android.ErrorType
 import com.yqman.cloudfile.db.CloudFileDatabaseHelper
 import com.yqman.cloudfile.db.Tables
 import com.yqman.cloudfile.io.model.CloudFile

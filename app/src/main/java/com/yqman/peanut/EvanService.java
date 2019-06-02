@@ -1,17 +1,17 @@
 package com.yqman.peanut;
 
+import com.netdisk.library.threadscheduler.Configuration;
+import com.netdisk.library.threadscheduler.ITaskScheduler;
+import com.netdisk.library.threadscheduler.TaskSchedulerManager;
 import com.yqman.cloudfile.io.model.CloudFile;
 import com.yqman.cloudfile.service.CloudFileService;
-import com.yqman.scheduler.Configuration;
-import com.yqman.scheduler.ITaskScheduler;
-import com.yqman.scheduler.TaskSchedulerManager;
-import com.yqman.scheduler.util.TextUtils;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.ResultReceiver;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 /**
  * Created by manyongqiang on 2018/2/8.

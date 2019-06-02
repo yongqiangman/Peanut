@@ -2,11 +2,10 @@ package com.yqman.cloudfile.service;
 
 import java.util.ArrayList;
 
+import com.netdisk.library.threadscheduler.ITaskScheduler;
+import com.netdisk.library.threadscheduler.TaskRequest;
 import com.yqman.cloudfile.io.model.CloudFile;
 import com.yqman.cloudfile.job.ListJob;
-import com.yqman.scheduler.ITaskScheduler;
-import com.yqman.scheduler.TaskRequest;
-
 import android.content.Context;
 import android.os.ResultReceiver;
 /**

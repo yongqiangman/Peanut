@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.yqman.android.scheduler.receiver.BaseStatus;
+import com.netdisk.library.threadscheduler.android.BaseStatus;
+import com.netdisk.library.threadscheduler.task.BaseTask;
 import com.yqman.cloudfile.db.CloudFileDatabaseHelper;
 import com.yqman.cloudfile.io.model.CloudFile;
 import com.yqman.cloudfile.network.CloudFileApi;
 import com.yqman.cloudfile.parse.CloudFileListResponse;
-import com.yqman.scheduler.task.BaseTask;
 
 import android.content.Context;
 import android.os.Bundle;

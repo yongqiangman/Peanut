@@ -2,7 +2,7 @@ package com.yqman.library.ui.receiver;
 
 import java.lang.ref.WeakReference;
 
-import com.yqman.android.scheduler.receiver.IFailedManager;
+import com.netdisk.library.threadscheduler.android.IFailedManager;
 import com.yqman.wdiget.CustomDialog;
 import com.yqman.wdiget.ToastHelper;
 

@@ -20,8 +20,8 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.os.Build
 import android.os.storage.StorageManager
+import com.netdisk.library.threadscheduler.util.FileUtils
 import com.yqman.monitor.LogHelper
-import com.yqman.scheduler.util.FileUtils
 import java.io.BufferedReader
 import java.io.FileNotFoundException
 import java.io.FileReader

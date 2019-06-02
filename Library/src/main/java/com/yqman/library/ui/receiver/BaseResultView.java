@@ -1,9 +1,10 @@
 package com.yqman.library.ui.receiver;
 
 
-import com.yqman.android.scheduler.receiver.ResultView;
 
 import android.app.Activity;
+
+import com.netdisk.library.threadscheduler.android.ResultView;
 
 /**
  * Created by manyongqiang on 2018/2/5.
